@@ -1,17 +1,16 @@
 package server
 
 import (
-	"net/http"
-
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
+	"github.com/jonathanvgr/website/apps/todo"
 )
 
 func setupRouter() *gin.Engine {
 	router := gin.New()
 
 	// Serve static file and redirect to index when no corresponding route is found
-	router.Use(static.Serve("/", static.LocalFile("./client", true)))
+	router.Use(static.Serve("/", static.LocalFile("./frontend", true)))
 	router.NoRoute(func(c *gin.Context) {
 		c.Request.URL.Path = "/"
 		router.HandleContext(c)
@@ -19,18 +18,7 @@ func setupRouter() *gin.Engine {
 
 	// API routes
 	api := router.Group("api")
-	{
-		// To Do's
-		todoGroup := api.Group("todo")
-		{
-			todoGroup.GET("/", func(c *gin.Context) {
-				c.JSON(http.StatusOK, gin.H{
-					"data": "todo",
-				})
-			})
-		}
-
-	}
+	todo.InitRoutes(api)
 
 	return router
 }
