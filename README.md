@@ -1,2 +1,2 @@
-# personnal-website
-My personnal website
+# My personnal Website
+This contains the source code of my personnal website.
