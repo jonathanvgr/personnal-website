@@ -1,4 +1,4 @@
-package db
+package common
 
 import (
 	"log"
@@ -9,7 +9,7 @@ import (
 
 var db *gorm.DB
 
-func Run() {
+func InitDB() {
 	var err error
 	db, err = gorm.Open(sqlite.Open("file::memory:?cache=shared"), &gorm.Config{})
 	if err != nil {

@@ -1,11 +1,11 @@
 package main
 
 import (
-	"github.com/jonathanvgr/website/db"
+	"github.com/jonathanvgr/website/common"
 	"github.com/jonathanvgr/website/server"
 )
 
 func main() {
-	db.Run()
+	common.InitDB()
 	server.Run()
 }
