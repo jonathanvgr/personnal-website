@@ -1,8 +1,8 @@
-package todo
+package note
 
 import "gorm.io/gorm"
 
-type Todo struct {
+type Note struct {
 	gorm.Model
 	Name  string `json:"Name" gorm:"not null"`
 	Items string `json:"Items"`

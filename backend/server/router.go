@@ -3,7 +3,7 @@ package server
 import (
 	"github.com/gin-contrib/static"
 	"github.com/gin-gonic/gin"
-	"github.com/jonathanvgr/website/apps/todo"
+	"github.com/jonathanvgr/website/apps/note"
 )
 
 func setupRouter() *gin.Engine {
@@ -18,7 +18,7 @@ func setupRouter() *gin.Engine {
 
 	// API routes
 	api := router.Group("api")
-	todo.InitRoutes(api)
+	note.InitRoutes(api)
 
 	return router
 }

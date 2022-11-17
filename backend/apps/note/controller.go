@@ -1,4 +1,4 @@
-package todo
+package note
 
 import (
 	"github.com/gin-gonic/gin"
@@ -7,81 +7,81 @@ import (
 )
 
 func GetAll(c *gin.Context) {
-	var todos []Todo
+	var notes []Note
 
-	if err := config.DB.Find(&todos).Error; err != nil {
+	if err := config.DB.Find(&notes).Error; err != nil {
 		senders.JsonError(c, err)
 		return
 	}
 
-	senders.JsonData(c, todos)
+	senders.JsonData(c, notes)
 }
 
 func Get(c *gin.Context) {
 	id := c.Param("id") // Get ID from URL
-	var todo Todo
+	var note Note
 
-	// Get first entry in DB where (Todo DB ID == ID from URL)
-	if err := config.DB.First(&todo, id).Error; err != nil {
+	// Get first entry in DB where (Note DB ID == ID from URL)
+	if err := config.DB.First(&note, id).Error; err != nil {
 		senders.JsonError(c, err)
 		return
 	}
 
-	senders.JsonData(c, todo)
+	senders.JsonData(c, note)
 }
 
 func Create(c *gin.Context) {
-	var todo Todo
+	var note Note
 
-	// Check if JSON body data binds with Todo struct model
-	if err := c.ShouldBindJSON(&todo); err != nil {
+	// Check if JSON body data binds with Note struct model
+	if err := c.ShouldBindJSON(&note); err != nil {
 		senders.JsonBadRequest(c, err)
 		return
 	}
 
 	// Create entry in DB
-	if err := config.DB.Create(&todo).Error; err != nil {
+	if err := config.DB.Create(&note).Error; err != nil {
 		senders.JsonError(c, err)
 		return
 	}
 
-	senders.JsonData(c, todo) // Return created todo
+	senders.JsonData(c, note) // Return created note
 }
 
 func Update(c *gin.Context) {
 	id := c.Param("id") // Get ID from URL
-	var todo Todo
+	var note Note
 
 	// It is important to first fetch the entry in DB
 	// and then bind body data to the fetched entry
 	// It allows body data to overwrite entry data
 
-	// Fetch todo in DB
-	if err := config.DB.First(&todo, id).Error; err != nil {
+	// Fetch note in DB
+	if err := config.DB.First(&note, id).Error; err != nil {
 		senders.JsonError(c, err)
 		return
 	}
 
-	// Check if JSON body data binds with Todo struct model
-	if err := c.ShouldBindJSON(&todo); err != nil {
+	// Check if JSON body data binds with Note struct model
+	if err := c.ShouldBindJSON(&note); err != nil {
 		senders.JsonBadRequest(c, err)
 		return
 	}
 
 	// Save changes into DB
-	if err := config.DB.Save(&todo).Error; err != nil {
+	if err := config.DB.Save(&note).Error; err != nil {
 		senders.JsonError(c, err)
 		return
 	}
 
-	senders.JsonData(c, todo)
+	senders.JsonData(c, note)
 }
 
 func Delete(c *gin.Context) {
 	id := c.Param("id") // Get ID from URL
 
 	// Permanently (with Unscoped) delete record from DB
-	if err := config.DB.Unscoped().Delete(&Todo{}, id).Error; err != nil {
+	if err := config.DB.Unscoped().Delete(&Note{}, id).Error; err != nil {
 		senders.JsonError(c, err)
 		return
 	}
