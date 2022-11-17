@@ -3,11 +3,11 @@ package todo
 import "github.com/gin-gonic/gin"
 
 func InitRoutes(ApiGroup *gin.RouterGroup) {
-	group := ApiGroup.Group("todo")
+	router := ApiGroup.Group("todo")
 
-	group.GET("/", GetAll)
-	group.POST("/", Create)
-	group.GET("/:id", Get)
-	group.PATCH("/:id", Update)
-	group.DELETE("/:id", Delete)
+	router.GET("/", GetAll)
+	router.POST("/", Create)
+	router.GET("/:id", Get)
+	router.PATCH("/:id", Update)
+	router.DELETE("/:id", Delete)
 }
