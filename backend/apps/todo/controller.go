@@ -57,7 +57,7 @@ func Update(c *gin.Context) {
 	// It allows body data to overwrite entry data
 
 	// Fetch todo in DB
-	if err := config.DB.Preload("Items").First(&todo, id).Error; err != nil {
+	if err := config.DB.First(&todo, id).Error; err != nil {
 		senders.JsonError(c, err)
 		return
 	}
@@ -68,6 +68,7 @@ func Update(c *gin.Context) {
 		return
 	}
 
+	// Save changes into DB
 	if err := config.DB.Save(&todo).Error; err != nil {
 		senders.JsonError(c, err)
 		return
