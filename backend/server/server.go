@@ -6,6 +6,7 @@ import (
 )
 
 func Run() {
+	// Init DB and make migrations before running server
 	config.InitDB()
 	config.DB.AutoMigrate(&todo.Todo{})
 
