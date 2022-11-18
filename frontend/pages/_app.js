@@ -1,7 +1,22 @@
-import '../styles/globals.css'
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+import Layout from '../components/Layout';
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  const darkTheme = createTheme({
+    palette: {
+      mode: 'dark',
+    },
+  });
+
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <CssBaseline />
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
+    </ThemeProvider>
+  )
 }
 
 export default MyApp

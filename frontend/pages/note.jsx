@@ -1,3 +1,6 @@
+import Note from "../components/Note"
+import Grid2 from '@mui/material/Unstable_Grid2'; // Grid version 2
+
 // This gets called on every request
 export async function getServerSideProps() {
     // Fetch data from external API
@@ -9,5 +12,13 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ data }) {
-    return <h1>{data}</h1>
+    return (
+        <Grid2 container spacing={2} columns={6} >
+            {data.data.map((note) => (
+                <Grid2 xs={6} sm={3} md={2} lg={1} key={note.ID} >
+                    <Note data={note} />
+                </Grid2>
+            ))}
+        </Grid2>
+    )
 }
