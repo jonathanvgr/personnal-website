@@ -6,7 +6,6 @@ import NoteIcon from '@mui/icons-material/Note';
 
 function Apps() {
     const style = {
-        position: "absolute",
         width: "100vw",
         backgroundColor: "background.default",
         justifyContent: "center",
@@ -50,6 +49,13 @@ export default function Layout({ children }) {
         zIndex: 100,
     }
 
+    const drawerStyle = {
+        position: "fixed",
+        inset: 0,
+        top: 60,
+        height: "100vh",
+        backgroundColor: "transparent"
+    }
 
     return (
         <>
@@ -75,7 +81,10 @@ export default function Layout({ children }) {
                     direction="down" in={openApps}
                     mountOnEnter unmountOnExit
                 >
-                    <Box>
+                    <Box
+                        sx={drawerStyle}
+                        onClick={() => setOpenApps(false)}
+                    >
                         <Apps />
                     </Box>
                 </Slide>
