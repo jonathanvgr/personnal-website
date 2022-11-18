@@ -63,7 +63,7 @@ const Goal = React.forwardRef((props, ref) => {
 
             <Typography mt={3} align="center">
                 J'ai construit ce projet fullstack de sorte à ce qu'il soit facilement extensible et que le code puisse être parcouru ergonomiquement et compris avec simplicité <br /><br />
-                Le code source du site est disponible sur <a href="https://github.com/jonathanvgr" target="_blank" rel="noreferrer">Github</a>
+                Le code source du site est disponible sur <a href="https://github.com/jonathanvgr/personnal-website" target="_blank" rel="noreferrer">Github</a>
             </Typography>
         </Stack>
     )
