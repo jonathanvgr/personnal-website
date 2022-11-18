@@ -56,19 +56,19 @@ export const BuildTable = [
     {
         title: "Frontend",
         rows: [
-            [{ content: "React" }, { content: "Material UI\nReact router" }],
+            [["React"], ["NextJS", "Material UI"]],
         ]
     },
     {
         title: "Backend",
         rows: [
-            [{ content: "Go" }, { content: "GIN, GIN CORS\nGORM" }],
+            [["Go"], ["GIN, GIN CORS", "GORM"]],
         ]
     },
     {
         title: "Hosting",
         rows: [
-            [{ content: "Raspberry" }, { content: "" }],
+            [["Raspberry"], ["Docker"]],
         ]
     },
 ]

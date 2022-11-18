@@ -33,7 +33,7 @@ const MyTable = () => (
                                     align="center"
                                     sx={{ width: "50%" }}
                                 >
-                                    {col.content.split("\n").map((text, k) => (
+                                    {col.map((text, k) => (
                                         <span
                                             key={`row ${i} col ${j} content ${k}`}
                                             style={{ display: "block" }}
