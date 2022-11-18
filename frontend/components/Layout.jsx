@@ -1,10 +1,9 @@
 import React from 'react';
 import Link from 'next/link'
-import { Box, Button, Divider, Slide, Stack } from '@mui/material'
+import { Box, Button, Divider, Slide, Stack, Fade } from '@mui/material'
 import NoteIcon from '@mui/icons-material/Note';
 
-
-function Apps() {
+function Apps({ open }) {
     const style = {
         width: "100vw",
         backgroundColor: "background.default",
@@ -12,21 +11,28 @@ function Apps() {
     }
 
     return (
-        <Stack
-            direction="row"
-            spacing={1}
-            divider={<Divider orientation="vertical" flexItem />}
-            sx={style}
-        >
-            <Link href="/note">
-                <Button size="small" sx={{ color: "text.primary" }} >
-                    <Stack alignItems="center">
-                        <NoteIcon />
-                        Notes
-                    </Stack>
-                </Button>
-            </Link>
-        </Stack>
+        <>
+            <Slide
+                direction="down" in={open}
+                mountOnEnter unmountOnExit
+            >
+                <Stack
+                    direction="row"
+                    spacing={1}
+                    divider={<Divider orientation="vertical" flexItem />}
+                    sx={style}
+                >
+                    <Link href="/note">
+                        <Button size="small" sx={{ color: "text.primary" }} >
+                            <Stack alignItems="center">
+                                <NoteIcon />
+                                Notes
+                            </Stack>
+                        </Button>
+                    </Link>
+                </Stack>
+            </Slide>
+        </>
     )
 }
 
@@ -54,7 +60,8 @@ export default function Layout({ children }) {
         inset: 0,
         top: 60,
         height: "100vh",
-        backgroundColor: "transparent"
+        backgroundColor: "rgba(0, 0, 0, 0.2)",
+        zIndex: 90,
     }
 
     return (
@@ -77,17 +84,16 @@ export default function Layout({ children }) {
                         Apps
                     </Button>
                 </Stack>
-                <Slide
-                    direction="down" in={openApps}
-                    mountOnEnter unmountOnExit
-                >
+
+                <Fade in={openApps}>
                     <Box
-                        sx={drawerStyle}
                         onClick={() => setOpenApps(false)}
+                        onWheel={() => setOpenApps(false)}
+                        sx={drawerStyle}
                     >
-                        <Apps />
+                        <Apps open={openApps} />
                     </Box>
-                </Slide>
+                </Fade>
             </header>
             <main>
                 {children}

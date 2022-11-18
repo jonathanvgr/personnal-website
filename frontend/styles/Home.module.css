@@ -1,0 +1,18 @@
+@keyframes bounce {
+    from {
+        transform: translateY(0) rotate(90DEG);
+    }
+
+    to {
+        transform: translateY(8px) rotate(90DEG);
+    }
+}
+
+.arrowAnim {
+    animation: 1s infinite alternate bounce;
+}
+
+.scrollAnim {
+    height: 100vh;
+    transition: transform 850ms ease-in-out;
+}
