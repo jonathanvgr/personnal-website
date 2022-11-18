@@ -7,6 +7,9 @@ function MyApp({ Component, pageProps }) {
   const darkTheme = createTheme({
     palette: {
       mode: 'dark',
+      note: {
+        main: '#c4c4c4',
+      },
     },
   });
 

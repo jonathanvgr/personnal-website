@@ -62,7 +62,7 @@ export const BuildTable = [
     {
         title: "Backend",
         rows: [
-            [["Go"], ["GIN, GIN CORS", "GORM"]],
+            [["Go"], ["GIN", "GORM"]],
         ]
     },
     {

@@ -1,11 +1,11 @@
 import React, { useContext, useRef } from 'react'
 
 // MUI
-import { Card, CardContent, CardHeader, TextField, IconButton, InputAdornment } from '@mui/material'
+import { Card, CardContent, CardHeader, TextField, IconButton, InputAdornment, Stack } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
 
 const Note = (props) => {
-    const { data } = props;
+    const data = props.data
 
     const convertDate = (str) => {
         return new Date(Date.parse(str)).toLocaleString('fr', { dateStyle: "short", timeStyle: "short" });
@@ -20,18 +20,20 @@ const Note = (props) => {
                         InputProps={{
                             sx: { fontSize: (theme) => theme.typography["h5"] },
                             disableUnderline: true,
-                            endAdornment: (<InputAdornment position="end" ># {data.ID}</InputAdornment>)
+                            endAdornment: (
+                                <Stack direction="row" alignItems="center">
+                                    <InputAdornment position="end" ># {data.ID}</InputAdornment>
+                                    <IconButton>
+                                        <DeleteIcon />
+                                    </IconButton>
+                                </Stack>
+                            )
                         }}
                         defaultValue={data.Name}
                         name="Name"
                     />
                 }
-                subheader={convertDate(data.CreatedAt)}
-                action={
-                    <IconButton>
-                        <DeleteIcon />
-                    </IconButton>
-                }
+                subheader={data.CreatedAt ? convertDate(data.CreatedAt) : ""}
             />
             <CardContent>
                 <TextField
