@@ -9,7 +9,11 @@ import (
 
 func setupRouter() *gin.Engine {
 	router := gin.Default()
-	router.Use(cors.Default())
+
+	corsConfig := cors.DefaultConfig()
+	corsConfig.AllowOrigins = []string{"http://thedarkunicorns.fr/", "http://www.thedarkunicorns.fr"}
+	corsConfig.AllowWildcard = true
+	router.Use(cors.New(corsConfig))
 
 	// Serve static file and redirect to index when no corresponding route is found
 	router.Use(static.Serve("/", static.LocalFile("./frontend", true)))
