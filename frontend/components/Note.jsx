@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 import { useRouter } from "next/router"
-
+import API from '../API';
 // MUI
 import { Card, CardContent, CardHeader, TextField, IconButton, InputAdornment, Stack } from '@mui/material'
 import DeleteIcon from '@mui/icons-material/Delete';
@@ -17,7 +17,7 @@ const Note = (props) => {
     }
 
     const deleteNote = async () => {
-        await fetch(`http://localhost:8080/api/note/${data.ID}`, { method: 'DELETE' })
+        await API.delete("/note")
             .then(() => router.replace(router.asPath)); // Refresh page
     }
 
@@ -28,13 +28,10 @@ const Note = (props) => {
         let items = itemsInput.current.value;
         let name = nameInput.current.value;
 
-        await fetch(`http://localhost:8080/api/note/${data.ID}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-                Name: name,
-                Items: items
-            })
-        })
+        await API.patch("/note", JSON.stringify({
+            Name: name,
+            Items: items
+        }))
             .then(() => router.replace(router.asPath)); // Refresh page
     }
 

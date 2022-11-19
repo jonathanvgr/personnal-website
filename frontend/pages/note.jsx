@@ -1,12 +1,14 @@
 import Note from "../components/Note"
 import { useRouter } from "next/router"
+import API from "../API";
+
 // MUI
 import Grid2 from '@mui/material/Unstable_Grid2';
 import { Box, Card, CardContent, Button } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 
 export async function getServerSideProps() {
-    const res = await fetch("http://localhost:8080/api/note/")
+    const res = await API.get("/note")
     const data = await res.json()
 
     return { props: { data } }
@@ -38,12 +40,7 @@ export default function Home({ data }) {
     const router = useRouter();
 
     const addNote = async () => {
-        await fetch('http://localhost:8080/api/note/', {
-            method: 'POST',
-            body: JSON.stringify({
-                Name: "Note"
-            })
-        })
+        await API.post("/note", JSON.stringify({ Name: "Note" }))
             .then(() => router.replace(router.asPath)); // Refresh page
     }
 
