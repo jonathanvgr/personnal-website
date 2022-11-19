@@ -1,5 +1,5 @@
 import Note from "../components/Note"
-
+import { useRouter } from "next/router"
 // MUI
 import Grid2 from '@mui/material/Unstable_Grid2';
 import { Box, Card, CardContent, Button } from '@mui/material'
@@ -12,9 +12,9 @@ export async function getServerSideProps() {
     return { props: { data } }
 }
 
-function DummyNote(props) {
+function NewNote(props) {
     return (
-        <Card sx={{ width: "100%", height: "150px" }}>
+        <Card sx={{ width: "100%", minHeight: "150px", height: "100%" }}>
             <CardContent sx={{ height: "100%" }}>
                 <Button
                     color="note"
@@ -35,13 +35,16 @@ function DummyNote(props) {
 }
 
 export default function Home({ data }) {
-    const addNote = () => {
-        fetch('http://localhost:8080/api/note/', {
+    const router = useRouter();
+
+    const addNote = async () => {
+        await fetch('http://localhost:8080/api/note/', {
             method: 'POST',
-            body: {
+            body: JSON.stringify({
                 Name: "Note"
-            },
+            })
         })
+            .then(() => router.replace(router.asPath)); // Refresh page
     }
 
     return (
@@ -53,7 +56,7 @@ export default function Home({ data }) {
                     </Grid2>
                 ))}
                 <Grid2 xs={6} sm={3} md={2} lg={1} >
-                    <DummyNote addNote={addNote} />
+                    <NewNote addNote={addNote} />
                 </Grid2>
             </Grid2>
         </Box>
