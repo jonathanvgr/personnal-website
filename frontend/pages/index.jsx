@@ -38,7 +38,6 @@ export default function Home() {
 
     const scrollTab = dir => {
         let i = refIndex;
-        let len = refs.current.length - 1;
 
         switch (dir) {
             case "UP":
@@ -51,11 +50,7 @@ export default function Home() {
                 return;
         }
 
-        if (i > len || i < 0) {
-            return
-        }
-
-        setRefIndex(i);
+        setRefIndex(i % Tabs.length);
     };
 
 
