@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react'
+import Head from "next/head";
 
 // MUI
 import { Box } from '@mui/material'
@@ -63,6 +64,9 @@ export default function Home() {
             onTouchEnd={handleTouch}
             onWheel={handleWheel}
         >
+            <Head>
+                <title>Mon Portfolio</title>
+            </Head>
             {Tabs.map((tab, i) => (
                 <HomeTab
                     key={`Home Tab ${i}`}

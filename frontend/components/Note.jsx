@@ -17,7 +17,7 @@ const Note = (props) => {
     }
 
     const deleteNote = async () => {
-        await API.delete("/note")
+        await API.delete(`/note/${data.ID}`)
             .then(() => router.replace(router.asPath)); // Refresh page
     }
 
@@ -28,10 +28,10 @@ const Note = (props) => {
         let items = itemsInput.current.value;
         let name = nameInput.current.value;
 
-        await API.patch("/note", JSON.stringify({
+        await API.patch(`/note/${data.ID}`, {
             Name: name,
             Items: items
-        }))
+        })
             .then(() => router.replace(router.asPath)); // Refresh page
     }
 
