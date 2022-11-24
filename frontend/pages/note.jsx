@@ -9,7 +9,7 @@ import { Box, Card, CardContent, Button } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
 
 export async function getServerSideProps() {
-    const res = await API.get("/note")
+    const res = await API.get("/note/")
     const data = await res.data
 
     return { props: { data } }

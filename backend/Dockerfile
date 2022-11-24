@@ -1,14 +1,11 @@
 ## Build
 FROM golang:1.19-alpine AS build
+RUN apk --no-cache add gcc g++ make
 
 WORKDIR /app
 
-RUN apk add build-base
-
-COPY go.mod ./
-COPY go.sum ./
-RUN go mod download
 COPY . ./
+RUN go mod download
 
 RUN go build -o /webserver
 

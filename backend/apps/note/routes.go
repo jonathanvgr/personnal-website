@@ -2,7 +2,7 @@ package note
 
 import "github.com/gin-gonic/gin"
 
-func InitRoutes(ApiGroup *gin.RouterGroup) {
+func InitRoutes(ApiGroup *gin.Engine) {
 	r := ApiGroup.Group("note")
 
 	r.GET("/", GetAll)

@@ -1,0 +1,10 @@
+version: '2'
+services:
+  proxy:
+    build: ./nginx
+    ports:
+      - "80:80"
+  api:
+    build: ./backend
+  client:
+    build: ./frontend
