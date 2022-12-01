@@ -6,6 +6,7 @@ WORKDIR /app
 
 COPY . ./
 RUN go mod download
+ENV PRODUCTION=0
 
 RUN go build -o /webserver
 

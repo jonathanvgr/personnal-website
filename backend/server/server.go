@@ -1,6 +1,8 @@
 package server
 
 import (
+	"os"
+
 	"github.com/gin-gonic/gin"
 	"github.com/jonathanvgr/website/apps/note"
 	"github.com/jonathanvgr/website/config"
@@ -11,7 +13,10 @@ func Run() {
 	config.InitDB()
 	config.DB.AutoMigrate(&note.Note{})
 
-	gin.SetMode(gin.ReleaseMode)
+	if os.Getenv("PRODUCTION") == "1" {
+		gin.SetMode(gin.ReleaseMode)
+	}
+
 	r := setupRouter()
 	r.Run()
 }
