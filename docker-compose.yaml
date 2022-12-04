@@ -1,10 +1,10 @@
 version: '2'
 services:
   proxy:
-    build: ./nginx
+    build: ./proxy
     ports:
       - "80:80"
   api:
-    build: ./backend
+    build: ./api
   client:
-    build: ./frontend
+    build: ./client
