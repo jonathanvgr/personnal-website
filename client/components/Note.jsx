@@ -67,6 +67,7 @@ const Note = (props) => {
                     InputProps={{ disableUnderline: true, sx: { fontSize: (theme) => theme.typography["h6"] } }}
                     defaultValue={data.Items}
                     multiline
+                    sx={{ borderLeft: "1px solid rgba(255, 255, 255, 0.2)", pl: 1, cursor: "pointer" }}
                 />
             </CardContent>
         </Card>
