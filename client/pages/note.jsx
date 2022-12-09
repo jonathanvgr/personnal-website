@@ -1,12 +1,13 @@
-import Note from "../components/Note"
 import { useRouter } from "next/router"
 import Head from "next/head";
 import API from "../API";
+import Note from "../components/Note"
 
 // MUI
 import Grid2 from '@mui/material/Unstable_Grid2';
 import { Box, Card, CardContent, Button } from '@mui/material'
 import AddIcon from '@mui/icons-material/Add';
+
 
 export async function getServerSideProps() {
     const res = await API.get("/note/")
@@ -39,7 +40,6 @@ function NewNote(props) {
 
 export default function Home(props) {
     const router = useRouter();
-
     const data = props.data["data"] || []
 
     const addNote = async () => {
@@ -48,7 +48,7 @@ export default function Home(props) {
     }
 
     return (
-        <Box sx={{ overflow: "scroll", px: 2, pb: "50vh" }}>
+        <Box sx={{ px: 2, pb: "50vh", overflow: "scroll", height: "100vh" }}>
             <Head>
                 <title>Mon Portfolio - Notes</title>
             </Head>
