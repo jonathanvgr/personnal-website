@@ -51,6 +51,7 @@ export default function Home() {
                 return;
         }
 
+        if (i < 0) { i = Tabs.length - 1; }
         setRefIndex(i % Tabs.length);
     };
 
