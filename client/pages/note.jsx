@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useRouter } from "next/router"
 import Head from "next/head";
 import API from "../API";
@@ -12,7 +11,6 @@ import AddIcon from '@mui/icons-material/Add';
 
 export async function getServerSideProps() {
     const res = await API.get("/note/")
-    console.log(res);
     const data = await res.data
 
     return { props: { data } }
